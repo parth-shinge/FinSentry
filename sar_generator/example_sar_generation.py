@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example SAR Generation Script
+FinSentry - Example SAR Generation Script
 ===============================================
 
 Demonstrates the full end-to-end pipeline:
@@ -48,7 +48,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 70)
-    print("  FinSentry AI - SAR Report Generation Example")
+    print("  FinSentry - SAR Report Generation Example")
     print("=" * 70)
     print()
 

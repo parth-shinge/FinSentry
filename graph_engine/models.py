@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Intelligence Data Models
+FinSentry - Graph Intelligence Data Models
 ===============================================
 
 Pydantic models for graph analysis outputs.
@@ -29,18 +29,20 @@ class NodeMetrics(BaseModel):
     """Per-node graph metrics for a financial entity.
 
     Attributes:
-        entity_id:         Unique entity identifier.
-        node_type:         Entity type (individual, corporation, etc.).
-        degree_centrality: Degree centrality in [0, 1].
-        pagerank:          PageRank score.
-        in_degree:         Number of incoming edges.
-        out_degree:        Number of outgoing edges.
-        community_id:      Community assignment from detection.
+        entity_id:              Unique entity identifier.
+        node_type:              Entity type (individual, corporation, etc.).
+        degree_centrality:      Degree centrality in [0, 1].
+        betweenness_centrality: Betweenness centrality in [0, 1].
+        pagerank:               PageRank score.
+        in_degree:              Number of incoming edges.
+        out_degree:             Number of outgoing edges.
+        community_id:           Community assignment from detection.
     """
 
     entity_id: str
     node_type: str = "unknown"
-    degree_centrality: float = Field(ge=0.0, le=1.0, default=0.0)
+    degree_centrality: float = Field(ge=0.0, default=0.0)
+    betweenness_centrality: float = Field(ge=0.0, default=0.0)
     pagerank: float = Field(ge=0.0, default=0.0)
     in_degree: int = Field(ge=0, default=0)
     out_degree: int = Field(ge=0, default=0)

@@ -1,5 +1,5 @@
 """
-FinSentry AI - Transaction Loader
+FinSentry - Transaction Loader
 ==================================
 
 Production-grade ingestion pipeline that loads financial transaction data

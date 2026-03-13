@@ -1,5 +1,5 @@
 """
-FinSentry AI - Case Builder Unit Tests
+FinSentry - Case Builder Unit Tests
 ========================================
 
 Tests covering:

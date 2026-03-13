@@ -1,5 +1,5 @@
 """
-FinSentry AI - Investigation Case Builder Package
+FinSentry - Investigation Case Builder Package
 ====================================================
 
 Converts raw fraud alerts, graph insights, and transaction data into

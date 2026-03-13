@@ -1,5 +1,5 @@
 """
-FinSentry AI - Fraud Explainability Engine
+FinSentry - Fraud Explainability Engine
 ==========================================
 
 Uses SHAP ``TreeExplainer`` to produce per-feature contribution scores

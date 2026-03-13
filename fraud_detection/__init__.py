@@ -1,5 +1,5 @@
 """
-FinSentry AI - Fraud Detection Package
+FinSentry - Fraud Detection Package
 =======================================
 
 Machine-learning and rule-based fraud detection for financial transactions.

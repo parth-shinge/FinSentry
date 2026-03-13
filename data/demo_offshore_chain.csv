@@ -1,0 +1,21 @@
+transaction_id,account_id,sender_entity_id,receiver_entity_id,amount,currency,timestamp,origin_country,destination_country,merchant_category,transaction_type,channel,is_international,risk_flag
+OFF-001,ACC-7001,ENT-9001,ENT-9002,180000.00,USD,2025-04-01 08:00:00,US,SG,financial_services,wire,branch,True,high
+OFF-002,ACC-7002,ENT-9002,ENT-9003,175000.00,USD,2025-04-01 10:00:00,SG,AE,financial_services,wire,online,True,high
+OFF-003,ACC-7003,ENT-9003,ENT-9004,170000.00,USD,2025-04-01 12:00:00,AE,HK,real_estate,wire,online,True,high
+OFF-004,ACC-7004,ENT-9004,ENT-9005,165000.00,USD,2025-04-01 14:00:00,HK,CH,financial_services,wire,online,True,high
+OFF-005,ACC-7005,ENT-9005,ENT-9006,160000.00,USD,2025-04-01 16:00:00,CH,LU,financial_services,wire,online,True,high
+OFF-006,ACC-7006,ENT-9006,ENT-9007,155000.00,USD,2025-04-02 09:00:00,LU,JE,financial_services,wire,online,True,high
+OFF-007,ACC-7007,ENT-9007,ENT-9001,150000.00,USD,2025-04-02 11:00:00,JE,US,financial_services,wire,online,True,high
+OFF-008,ACC-7001,ENT-9001,ENT-9008,95000.00,USD,2025-04-03 09:00:00,US,SG,import_export,wire,branch,True,medium
+OFF-009,ACC-7008,ENT-9008,ENT-9003,92000.00,USD,2025-04-03 11:00:00,SG,AE,consulting,wire,online,True,
+OFF-010,ACC-7003,ENT-9003,ENT-9009,88000.00,USD,2025-04-03 14:00:00,AE,KY,financial_services,wire,online,True,high
+OFF-011,ACC-7009,ENT-9009,ENT-9005,85000.00,USD,2025-04-04 10:00:00,KY,CH,financial_services,wire,online,True,high
+OFF-012,ACC-7005,ENT-9005,ENT-9001,82000.00,USD,2025-04-04 13:00:00,CH,US,financial_services,wire,online,True,
+OFF-013,ACC-7001,ENT-9001,ENT-9010,45000.00,USD,2025-04-05 08:00:00,US,AE,real_estate,wire,branch,True,medium
+OFF-014,ACC-7010,ENT-9010,ENT-9004,43000.00,USD,2025-04-05 10:00:00,AE,HK,real_estate,wire,online,True,
+OFF-015,ACC-7004,ENT-9004,ENT-9007,41000.00,USD,2025-04-05 12:00:00,HK,JE,financial_services,wire,online,True,high
+OFF-016,ACC-7007,ENT-9007,ENT-9002,39000.00,USD,2025-04-05 14:00:00,JE,SG,financial_services,wire,online,True,
+OFF-017,ACC-7001,ENT-9001,ENT-9003,28000.00,USD,2025-04-06 09:00:00,US,AE,consulting,wire,branch,True,
+OFF-018,ACC-7003,ENT-9003,ENT-9006,26000.00,USD,2025-04-06 11:00:00,AE,LU,financial_services,wire,online,True,
+OFF-019,ACC-7006,ENT-9006,ENT-9001,24000.00,USD,2025-04-06 14:00:00,LU,US,financial_services,wire,online,True,
+OFF-020,ACC-7001,ENT-9001,ENT-9005,15000.00,USD,2025-04-07 10:00:00,US,CH,financial_services,wire,branch,True,medium

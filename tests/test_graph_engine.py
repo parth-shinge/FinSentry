@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Engine Unit Tests
+FinSentry - Graph Engine Unit Tests
 ========================================
 
 Tests covering:

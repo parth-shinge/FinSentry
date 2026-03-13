@@ -1,5 +1,5 @@
 """
-FinSentry AI - Fraud Detection Data Models
+FinSentry - Fraud Detection Data Models
 ===========================================
 
 Pydantic models for fraud detection outputs.

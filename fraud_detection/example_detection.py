@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example Fraud Detection Script
+FinSentry - Example Fraud Detection Script
 ===============================================
 
 Demonstrates the end-to-end fraud detection pipeline:
@@ -46,7 +46,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 70)
-    print("  FinSentry AI - Fraud Detection Example")
+    print("  FinSentry - Fraud Detection Example")
     print("=" * 70)
     print()
 

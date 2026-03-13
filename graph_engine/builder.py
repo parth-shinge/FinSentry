@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Builder
+FinSentry - Graph Builder
 ==============================
 
 Constructs a directed financial transaction graph using NetworkX.

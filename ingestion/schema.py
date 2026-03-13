@@ -1,5 +1,5 @@
 """
-FinSentry AI - Transaction Schema Definitions
+FinSentry - Transaction Schema Definitions
 ==============================================
 
 Pydantic v2 models that enforce strict validation, type coercion, and

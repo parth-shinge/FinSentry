@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Retriever
+FinSentry - Graph Retriever
 ================================
 
 Extracts relevant subgraph context for a given investigation case by

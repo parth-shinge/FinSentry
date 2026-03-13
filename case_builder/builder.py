@@ -1,5 +1,5 @@
 """
-FinSentry AI - Investigation Case Builder
+FinSentry - Investigation Case Builder
 ============================================
 
 Aggregates suspicious transactions, graph intelligence insights, and

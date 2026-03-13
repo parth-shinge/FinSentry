@@ -1,5 +1,5 @@
 """
-FinSentry AI - Fraud Detector
+FinSentry - Fraud Detector
 ==============================
 
 Core fraud-detection engine that trains anomaly-detection and supervised

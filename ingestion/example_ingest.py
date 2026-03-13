@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example Ingestion Script
+FinSentry - Example Ingestion Script
 =========================================
 
 Demonstrates the end-to-end ingestion pipeline:
@@ -55,7 +55,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 65)
-    print("  FinSentry AI - Example Transaction Ingestion")
+    print("  FinSentry - Example Transaction Ingestion")
     print("=" * 65)
     print()
 

@@ -1,5 +1,5 @@
 """
-FinSentry AI - Investigation Case Data Models
+FinSentry - Investigation Case Data Models
 ================================================
 
 Pydantic models for structured investigation case outputs.
@@ -87,3 +87,33 @@ class Case(BaseModel):
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
     )
+
+    # ── Computed investigation properties ─────────────────────────
+
+    @property
+    def severity_label(self) -> str:
+        """Human-readable case severity: critical / high / medium / low."""
+        if self.risk_score >= 0.8:
+            return "critical"
+        if self.risk_score >= 0.6:
+            return "high"
+        if self.risk_score >= 0.4:
+            return "medium"
+        return "low"
+
+    @property
+    def entities_involved(self) -> list[str]:
+        """All entities associated with this case (primary + related)."""
+        return [self.primary_entity] + list(self.related_entities)
+
+    @property
+    def transaction_count(self) -> int:
+        """Number of transactions in this case."""
+        return len(self.transactions)
+
+    @property
+    def aml_patterns_detected(self) -> list[str]:
+        """Unique AML pattern types from risk indicators."""
+        return list(dict.fromkeys(
+            ri.indicator_type for ri in self.risk_indicators
+        ))

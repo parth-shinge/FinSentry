@@ -1,5 +1,5 @@
 """
-FinSentry AI - Structured Logging System
+FinSentry - Structured Logging System
 =========================================
 
 Provides JSON-structured logging with per-module logger factories.

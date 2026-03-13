@@ -1,5 +1,5 @@
 """
-FinSentry AI - Project Path Configuration
+FinSentry - Project Path Configuration
 ============================================
 
 Ensures the project root directory is on ``sys.path`` so that all

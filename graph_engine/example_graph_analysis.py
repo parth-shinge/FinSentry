@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example Graph Analysis Script
+FinSentry - Example Graph Analysis Script
 ===============================================
 
 Demonstrates the end-to-end graph intelligence pipeline:
@@ -48,7 +48,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 70)
-    print("  FinSentry AI - Graph Intelligence Engine Example")
+    print("  FinSentry - Graph Intelligence Engine Example")
     print("=" * 70)
     print()
 

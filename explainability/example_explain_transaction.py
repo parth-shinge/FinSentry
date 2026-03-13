@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example Explainability Script
+FinSentry - Example Explainability Script
 =============================================
 
 Demonstrates the end-to-end explainability pipeline:
@@ -46,7 +46,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 70)
-    print("  FinSentry AI - Explainability Example")
+    print("  FinSentry - Explainability Example")
     print("=" * 70)
     print()
 

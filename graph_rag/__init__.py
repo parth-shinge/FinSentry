@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph RAG Package
+FinSentry - Graph RAG Package
 ===================================
 
 Graph-based Retrieval-Augmented Generation for investigation context.

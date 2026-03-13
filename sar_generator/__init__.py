@@ -1,5 +1,5 @@
 """
-FinSentry AI - SAR Generator Package
+FinSentry - SAR Generator Package
 =======================================
 
 Generates Suspicious Activity Reports from investigation cases with

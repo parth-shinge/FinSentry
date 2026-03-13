@@ -1,5 +1,5 @@
 """
-FinSentry AI - SAR Generator Data Models
+FinSentry - SAR Generator Data Models
 ==========================================
 
 Pydantic models for Suspicious Activity Report outputs.

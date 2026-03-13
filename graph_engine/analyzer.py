@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Analyzer
+FinSentry - Graph Analyzer
 ================================
 
 Performs graph intelligence analysis on the financial transaction network.
@@ -69,7 +69,7 @@ class GraphAnalyzer:
     # ------------------------------------------------------------------
 
     def compute_centrality(self) -> Dict[str, NodeMetrics]:
-        """Compute degree centrality and PageRank for all nodes.
+        """Compute degree centrality, betweenness centrality, and PageRank for all nodes.
 
         Returns:
             Mapping of entity_id → :class:`NodeMetrics`.
@@ -79,6 +79,7 @@ class GraphAnalyzer:
             return {}
 
         degree_cent: Dict[str, float] = dict(nx.degree_centrality(self._graph))
+        betweenness: Dict[str, float] = dict(nx.betweenness_centrality(self._graph, weight="amount"))
         pr: Dict[str, float] = dict(nx.pagerank(self._graph, weight="transaction_weight"))
 
         self._centrality = {}
@@ -90,6 +91,7 @@ class GraphAnalyzer:
                 entity_id=node_str,
                 node_type=str(data.get("entity_type", "unknown")),
                 degree_centrality=float(round(float(degree_cent.get(node_str, 0.0)), 6)),
+                betweenness_centrality=float(round(float(betweenness.get(node_str, 0.0)), 6)),
                 pagerank=float(round(float(pr.get(node_str, 0.0)), 6)),
                 in_degree=int(self._graph.in_degree(node_str)),
                 out_degree=int(self._graph.out_degree(node_str)),
@@ -511,8 +513,64 @@ class GraphAnalyzer:
         # Sort by risk descending
         results.sort(key=lambda r: r.overall_risk_score, reverse=True)
 
+        # ── Risk propagation: boost neighbors of high-risk nodes ──
+        results = self._propagate_risk(results)
+
         logger.info("Computed risk scores for %d entities", len(results))
         return results
+
+    def _propagate_risk(
+        self,
+        scores: List[EntityRiskScore],
+        threshold: float = 0.6,
+        boost_factor: float = 0.10,
+    ) -> List[EntityRiskScore]:
+        """Slightly boost risk for neighbors of high-risk entities.
+
+        If a node's overall risk is ≥ *threshold*, each of its direct
+        neighbors receives a small additive boost (capped at 1.0).
+
+        Args:
+            scores:       Pre-computed risk scores.
+            threshold:    Minimum risk to qualify as a propagation source.
+            boost_factor: Additive boost applied to each neighbor.
+
+        Returns:
+            Updated list sorted by risk descending.
+        """
+        score_map: Dict[str, EntityRiskScore] = {s.entity_id: s for s in scores}
+        boosts: Dict[str, float] = {}
+
+        for s in scores:
+            if s.overall_risk_score < threshold:
+                continue
+            neighbors: set[str] = set()
+            if s.entity_id in self._graph:
+                for n in self._graph.successors(s.entity_id):
+                    neighbors.add(str(n))
+                for n in self._graph.predecessors(s.entity_id):
+                    neighbors.add(str(n))
+            for n in neighbors:
+                if n in score_map and n != s.entity_id:
+                    prev = boosts.get(n, 0.0)
+                    boosts[n] = max(prev, boost_factor)
+
+        for entity_id, boost in boosts.items():
+            entry = score_map[entity_id]
+            new_score = min(entry.overall_risk_score + boost, 1.0)
+            score_map[entity_id] = EntityRiskScore(
+                entity_id=entry.entity_id,
+                centrality_score=entry.centrality_score,
+                community_fraud_density=entry.community_fraud_density,
+                high_risk_neighbor_count=entry.high_risk_neighbor_count,
+                cycle_participation_count=entry.cycle_participation_count,
+                overall_risk_score=float(round(new_score, 4)),
+                suspicious_paths=entry.suspicious_paths,
+            )
+
+        updated = list(score_map.values())
+        updated.sort(key=lambda r: r.overall_risk_score, reverse=True)
+        return updated
 
     # ------------------------------------------------------------------
     # Visualization Export

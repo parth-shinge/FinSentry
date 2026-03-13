@@ -1,5 +1,5 @@
 """
-FinSentry AI - Explainability Unit Tests
+FinSentry - Explainability Unit Tests
 =========================================
 
 Tests covering:

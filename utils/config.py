@@ -1,5 +1,5 @@
 """
-FinSentry AI - Configuration Manager
+FinSentry - Configuration Manager
 =====================================
 
 Centralized configuration system that loads environment variables from a

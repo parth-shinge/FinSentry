@@ -1,5 +1,5 @@
 """
-FinSentry AI - Context Builder
+FinSentry - Context Builder
 ================================
 
 Converts raw :class:`~graph_rag.retriever.RetrievedContext` into structured

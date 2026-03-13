@@ -1,5 +1,5 @@
 """
-FinSentry AI - Database Layer
+FinSentry - Database Layer
 ==============================
 
 SQLAlchemy ORM integration for persisting financial transactions into

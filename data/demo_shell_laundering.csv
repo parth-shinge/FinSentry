@@ -1,0 +1,21 @@
+transaction_id,account_id,sender_entity_id,receiver_entity_id,amount,currency,timestamp,origin_country,destination_country,merchant_category,transaction_type,channel,is_international,risk_flag
+SHL-001,ACC-5001,ENT-7001,ENT-7002,250000.00,USD,2025-02-01 09:00:00,US,KY,financial_services,wire,online,True,high
+SHL-002,ACC-5002,ENT-7002,ENT-7003,245000.00,USD,2025-02-01 10:30:00,KY,PA,financial_services,wire,online,True,high
+SHL-003,ACC-5003,ENT-7003,ENT-7004,240000.00,USD,2025-02-01 12:00:00,PA,BS,financial_services,wire,online,True,high
+SHL-004,ACC-5004,ENT-7004,ENT-7005,235000.00,USD,2025-02-01 14:00:00,BS,VG,financial_services,wire,online,True,high
+SHL-005,ACC-5005,ENT-7005,ENT-7001,230000.00,USD,2025-02-01 16:00:00,VG,US,financial_services,wire,online,True,high
+SHL-006,ACC-5001,ENT-7001,ENT-7006,120000.00,USD,2025-02-02 09:00:00,US,KY,real_estate,wire,branch,True,high
+SHL-007,ACC-5006,ENT-7006,ENT-7002,118000.00,USD,2025-02-02 10:00:00,KY,KY,financial_services,wire,online,False,
+SHL-008,ACC-5002,ENT-7002,ENT-7007,115000.00,USD,2025-02-02 11:00:00,KY,PA,financial_services,wire,online,True,high
+SHL-009,ACC-5007,ENT-7007,ENT-7003,112000.00,USD,2025-02-02 12:00:00,PA,PA,consulting,wire,online,False,
+SHL-010,ACC-5003,ENT-7003,ENT-7001,110000.00,USD,2025-02-02 14:00:00,PA,US,consulting,wire,online,True,
+SHL-011,ACC-5001,ENT-7001,ENT-7008,85000.00,USD,2025-02-03 08:00:00,US,AE,import_export,wire,branch,True,medium
+SHL-012,ACC-5008,ENT-7008,ENT-7004,83000.00,USD,2025-02-03 09:30:00,AE,BS,financial_services,wire,online,True,high
+SHL-013,ACC-5004,ENT-7004,ENT-7002,80000.00,USD,2025-02-03 11:00:00,BS,KY,financial_services,wire,online,True,
+SHL-014,ACC-5002,ENT-7002,ENT-7001,78000.00,USD,2025-02-03 13:00:00,KY,US,financial_services,wire,online,True,
+SHL-015,ACC-5001,ENT-7001,ENT-7003,50000.00,USD,2025-02-04 09:00:00,US,PA,financial_services,wire,branch,True,high
+SHL-016,ACC-5003,ENT-7003,ENT-7005,48000.00,USD,2025-02-04 10:00:00,PA,VG,financial_services,wire,online,True,
+SHL-017,ACC-5005,ENT-7005,ENT-7006,46000.00,USD,2025-02-04 11:00:00,VG,KY,financial_services,wire,online,True,
+SHL-018,ACC-5006,ENT-7006,ENT-7001,44000.00,USD,2025-02-04 12:00:00,KY,US,financial_services,wire,online,True,
+SHL-019,ACC-5001,ENT-7001,ENT-7004,35000.00,USD,2025-02-05 09:00:00,US,BS,real_estate,wire,branch,True,medium
+SHL-020,ACC-5004,ENT-7004,ENT-7007,33000.00,USD,2025-02-05 10:00:00,BS,PA,consulting,wire,online,True,

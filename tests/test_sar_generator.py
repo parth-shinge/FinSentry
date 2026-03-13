@@ -1,5 +1,5 @@
 """
-FinSentry AI - SAR Generator Unit Tests
+FinSentry - SAR Generator Unit Tests
 ==========================================
 
 Tests covering:

@@ -1,5 +1,5 @@
 """
-FinSentry AI - Explainability Package
+FinSentry - Explainability Package
 ======================================
 
 SHAP-based explainability for the FinSentry fraud-detection engine.

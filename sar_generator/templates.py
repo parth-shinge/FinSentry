@@ -1,5 +1,5 @@
 """
-FinSentry AI - SAR Report Templates
+FinSentry - SAR Report Templates
 =====================================
 
 Provides template functions that render structured investigation context

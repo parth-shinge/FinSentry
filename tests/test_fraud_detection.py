@@ -1,5 +1,5 @@
 """
-FinSentry AI - Fraud Detection Unit Tests
+FinSentry - Fraud Detection Unit Tests
 ==========================================
 
 Tests covering:

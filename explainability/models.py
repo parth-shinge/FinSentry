@@ -1,5 +1,5 @@
 """
-FinSentry AI - Explainability Data Models
+FinSentry - Explainability Data Models
 ==========================================
 
 Pydantic models for fraud-detection explanation outputs.

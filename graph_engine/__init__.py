@@ -1,5 +1,5 @@
 """
-FinSentry AI - Graph Intelligence Engine
+FinSentry - Graph Intelligence Engine
 ==========================================
 
 Graph-based analysis of financial transaction networks for detecting

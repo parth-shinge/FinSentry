@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-FinSentry AI - Example Case Building Script
+FinSentry - Example Case Building Script
 ==============================================
 
 Demonstrates the end-to-end investigation case building pipeline:
@@ -48,7 +48,7 @@ def main() -> None:
         sys.exit(1)
 
     print("=" * 70)
-    print("  FinSentry AI - Investigation Case Builder Example")
+    print("  FinSentry - Investigation Case Builder Example")
     print("=" * 70)
     print()
 

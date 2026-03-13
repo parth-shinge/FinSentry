@@ -1,5 +1,5 @@
 """
-FinSentry AI - Feature Engineering
+FinSentry - Feature Engineering
 ====================================
 
 Extracts numerical features from normalised transactions and builds

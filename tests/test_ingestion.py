@@ -1,5 +1,5 @@
 """
-FinSentry AI - Ingestion Unit Tests
+FinSentry - Ingestion Unit Tests
 ====================================
 
 Tests for the transaction ingestion pipeline covering:

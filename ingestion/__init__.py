@@ -1,5 +1,5 @@
 """
-FinSentry AI - Transaction Ingestion Package
+FinSentry - Transaction Ingestion Package
 =============================================
 
 Provides a production-grade pipeline for loading, validating, normalizing,
