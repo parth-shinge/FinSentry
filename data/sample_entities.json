@@ -1,0 +1,128 @@
+[
+  {
+    "entity_id": "ENT-2001",
+    "name": "John Smith",
+    "type": "individual",
+    "jurisdiction": "US",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2002",
+    "name": "Offshore Holdings Ltd",
+    "type": "corporation",
+    "jurisdiction": "KY",
+    "risk_rating": "high"
+  },
+  {
+    "entity_id": "ENT-2003",
+    "name": "Hans Mueller",
+    "type": "individual",
+    "jurisdiction": "DE",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2004",
+    "name": "Global Consulting Group",
+    "type": "corporation",
+    "jurisdiction": "GB",
+    "risk_rating": "medium"
+  },
+  {
+    "entity_id": "ENT-2005",
+    "name": "Jane Doe",
+    "type": "individual",
+    "jurisdiction": "US",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2006",
+    "name": "MexiTrade Corp",
+    "type": "corporation",
+    "jurisdiction": "MX",
+    "risk_rating": "high"
+  },
+  {
+    "entity_id": "ENT-2007",
+    "name": "Alice Johnson",
+    "type": "individual",
+    "jurisdiction": "US",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2008",
+    "name": "Diamond & Gold Exchange",
+    "type": "msb",
+    "jurisdiction": "US",
+    "risk_rating": "high"
+  },
+  {
+    "entity_id": "ENT-2009",
+    "name": "Gulf Property Investments",
+    "type": "corporation",
+    "jurisdiction": "AE",
+    "risk_rating": "high"
+  },
+  {
+    "entity_id": "ENT-2010",
+    "name": "Pierre Dupont",
+    "type": "individual",
+    "jurisdiction": "FR",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2011",
+    "name": "HopeAid Foundation",
+    "type": "npo",
+    "jurisdiction": "US",
+    "risk_rating": "medium"
+  },
+  {
+    "entity_id": "ENT-2012",
+    "name": "StreamFlix Inc",
+    "type": "corporation",
+    "jurisdiction": "US",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2013",
+    "name": "Channel Islands Trust",
+    "type": "trust",
+    "jurisdiction": "JE",
+    "risk_rating": "high"
+  },
+  {
+    "entity_id": "ENT-2014",
+    "name": "Bob Williams",
+    "type": "individual",
+    "jurisdiction": "US",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2015",
+    "name": "SinoTech Manufacturing",
+    "type": "corporation",
+    "jurisdiction": "CN",
+    "risk_rating": "medium"
+  },
+  {
+    "entity_id": "ENT-2016",
+    "name": "AutoMax Dealers",
+    "type": "corporation",
+    "jurisdiction": "US",
+    "risk_rating": "medium"
+  },
+  {
+    "entity_id": "ENT-2017",
+    "name": "Klaus Weber",
+    "type": "individual",
+    "jurisdiction": "DE",
+    "risk_rating": "low"
+  },
+  {
+    "entity_id": "ENT-2018",
+    "name": "Caribbean Finance Group",
+    "type": "corporation",
+    "jurisdiction": "BS",
+    "risk_rating": "high"
+  }
+]
