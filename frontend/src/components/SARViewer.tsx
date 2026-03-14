@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { generateSAR, validateSAR, listSARReports, getSARReport } from "../services/api";
+import { generateSAR, validateSAR, listSARReports, getSARReport, downloadSARReport } from "../services/api";
 import type {
   SARReportOut,
   SARValidateResponse,
@@ -19,6 +19,7 @@ export default function SARViewer({ caseId }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [savedReports, setSavedReports] = useState<SARListItem[]>([]);
   const [showHistory, setShowHistory] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   // Fetch saved reports on mount
   useEffect(() => {
@@ -81,6 +82,18 @@ export default function SARViewer({ caseId }: Props) {
     setError(null);
   }, [caseId]);
 
+  const handleDownloadPDF = async () => {
+    if (!report) return;
+    setDownloading(true);
+    try {
+      await downloadSARReport(report.report_id);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to download PDF");
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <div className="rounded-xl border border-gray-200 bg-white">
       <div className="border-b border-gray-200 px-6 py-4 flex items-center justify-between">
@@ -88,6 +101,15 @@ export default function SARViewer({ caseId }: Props) {
           SAR Report
         </h3>
         <div className="flex items-center gap-2">
+          {report && (
+            <button
+              onClick={handleDownloadPDF}
+              disabled={downloading}
+              className="rounded-lg border border-blue-300 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-100 disabled:opacity-50"
+            >
+              {downloading ? "Downloading…" : "Download PDF"}
+            </button>
+          )}
           {savedReports.length > 0 && (
             <button
               onClick={() => setShowHistory(!showHistory)}

@@ -435,3 +435,49 @@ class TestGraphEntityEndpoint:
             assert neighbor["direction"] in ("incoming", "outgoing")
             assert "transaction_amount" in neighbor
             assert "fraud_score" in neighbor
+
+
+# ===========================================================================
+# GET /sar/{report_id}/download
+# ===========================================================================
+
+
+class TestSARDownloadEndpoint:
+    """Tests for the /sar/{report_id}/download endpoint."""
+
+    def test_download_report_not_found(self, client: TestClient):
+        resp = client.get("/sar/NONEXISTENT/download")
+        assert resp.status_code == 404
+
+    def test_download_returns_pdf(self, client: TestClient):
+        txns = _sample_transactions(30)
+        client.post("/ingest", json={"transactions": txns})
+        inv = client.post("/investigate", json={"fraud_threshold": 0.3}).json()
+        if inv["cases_generated"] > 0:
+            case_id = inv["cases"][0]["case_id"]
+            sar = client.post("/sar/generate", json={"case_id": case_id}).json()
+            report_id = sar["report"]["report_id"]
+
+            resp = client.get(f"/sar/{report_id}/download")
+            assert resp.status_code == 200
+            assert resp.headers["content-type"] == "application/pdf"
+            assert "attachment" in resp.headers.get("content-disposition", "")
+            # Validate PDF magic bytes
+            assert resp.content[:5] == b"%PDF-"
+
+    def test_download_pdf_contains_report_id(self, client: TestClient):
+        txns = _sample_transactions(30)
+        client.post("/ingest", json={"transactions": txns})
+        inv = client.post("/investigate", json={"fraud_threshold": 0.3}).json()
+        if inv["cases_generated"] > 0:
+            case_id = inv["cases"][0]["case_id"]
+            sar = client.post("/sar/generate", json={"case_id": case_id}).json()
+            report_id = sar["report"]["report_id"]
+
+            resp = client.get(f"/sar/{report_id}/download")
+            assert resp.status_code == 200
+            # Filename in Content-Disposition must contain the report ID
+            disposition = resp.headers.get("content-disposition", "")
+            assert report_id in disposition
+            # PDF must be non-trivial (more than just a header)
+            assert len(resp.content) > 500

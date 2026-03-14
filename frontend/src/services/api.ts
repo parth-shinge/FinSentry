@@ -59,6 +59,20 @@ export const listSARReports = () =>
 export const getSARReport = (reportId: string) =>
   api.get<SARReportOut>(`/sar/${reportId}`).then((r) => r.data);
 
+export const downloadSARReport = async (reportId: string) => {
+  const response = await api.get(`/sar/${reportId}/download`, {
+    responseType: "blob",
+  });
+  const url = window.URL.createObjectURL(new Blob([response.data]));
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", `sar_${reportId}.pdf`);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.URL.revokeObjectURL(url);
+};
+
 /* ── Graph ──────────────────────────────────────────────── */
 
 export const getGraphEntity = (entityId: string) =>

@@ -17,12 +17,16 @@ POST /pipeline/run     Run full orchestrated investigation pipeline.
 GET  /timeline/{case_id} Return timeline reconstruction for a case.
 GET  /sar/list         List all generated SAR reports.
 GET  /sar/{report_id}  Retrieve a specific SAR report.
+GET  /sar/{report_id}/download  Download SAR report as PDF.
 POST /investigation/query  Investigation Copilot.
 """
 
 from __future__ import annotations
 
+import io
+
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import StreamingResponse
 
 from api.schemas import (
     CaseDetailResponse,
@@ -400,6 +404,133 @@ def get_sar_report(report_id: str) -> SARReportOut:
         jurisdictions=list(report.jurisdictions),
         total_amount=report.total_amount,
         risk_score=report.risk_score,
+    )
+
+
+# ---------------------------------------------------------------------------
+# GET /sar/{report_id}/download
+# ---------------------------------------------------------------------------
+
+
+@router.get("/sar/{report_id}/download")
+def download_sar_pdf(report_id: str):
+    """Download a SAR report as a PDF file."""
+    from reportlab.lib.pagesizes import letter
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import inch
+    from reportlab.lib.colors import HexColor
+    from reportlab.platypus import (
+        SimpleDocTemplate,
+        Paragraph,
+        Spacer,
+        Table,
+        TableStyle,
+    )
+
+    state = get_state()
+
+    if report_id not in state.sar_reports:
+        raise HTTPException(
+            status_code=404,
+            detail=f"SAR report '{report_id}' not found.",
+        )
+
+    report = state.sar_reports[report_id]
+
+    # -- Build PDF in memory --
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buf,
+        pagesize=letter,
+        topMargin=0.75 * inch,
+        bottomMargin=0.75 * inch,
+        leftMargin=0.75 * inch,
+        rightMargin=0.75 * inch,
+    )
+
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        "SARTitle",
+        parent=styles["Title"],
+        fontSize=18,
+        spaceAfter=6,
+        textColor=HexColor("#1e3a5f"),
+    )
+    heading_style = ParagraphStyle(
+        "SARHeading",
+        parent=styles["Heading2"],
+        fontSize=12,
+        spaceBefore=14,
+        spaceAfter=4,
+        textColor=HexColor("#1e3a5f"),
+    )
+    body_style = ParagraphStyle(
+        "SARBody",
+        parent=styles["BodyText"],
+        fontSize=10,
+        leading=14,
+    )
+    meta_style = ParagraphStyle(
+        "SARMeta",
+        parent=styles["BodyText"],
+        fontSize=10,
+        textColor=HexColor("#555555"),
+    )
+
+    elements: list = []
+
+    # Title
+    elements.append(Paragraph("Suspicious Activity Report", title_style))
+    elements.append(Spacer(1, 8))
+
+    # Metadata table
+    meta_data = [
+        ["Report ID", report.report_id],
+        ["Case ID", report.case_id],
+        ["Subject Entity", report.subject_entity],
+        ["Report Date", report.report_date.isoformat()],
+        ["Risk Score", f"{report.risk_score:.2%}"],
+        ["Total Amount", f"${report.total_amount:,.2f}"],
+        ["Entities Involved", ", ".join(report.entities_involved) or "—"],
+        ["Jurisdictions", ", ".join(report.jurisdictions) or "—"],
+    ]
+    meta_table = Table(meta_data, colWidths=[1.8 * inch, 4.5 * inch])
+    meta_table.setStyle(
+        TableStyle(
+            [
+                ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+                ("FONTSIZE", (0, 0), (-1, -1), 10),
+                ("TEXTCOLOR", (0, 0), (0, -1), HexColor("#1e3a5f")),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+                ("TOPPADDING", (0, 0), (-1, -1), 4),
+            ]
+        )
+    )
+    elements.append(meta_table)
+    elements.append(Spacer(1, 12))
+
+    # Narrative sections
+    sections = [
+        ("Suspicious Activity Description", report.suspicious_activity_description),
+        ("Transaction Summary", report.transaction_summary),
+        ("Evidence Summary", report.evidence_summary),
+        ("Risk Assessment", report.risk_assessment),
+        ("Recommended Action", report.recommended_action),
+    ]
+    for title, text in sections:
+        if text:
+            elements.append(Paragraph(title, heading_style))
+            elements.append(Paragraph(text, body_style))
+
+    doc.build(elements)
+    buf.seek(0)
+
+    filename = f"sar_{report_id}.pdf"
+    return StreamingResponse(
+        buf,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
 
